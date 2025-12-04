@@ -26,8 +26,21 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1030px;
   margin: 0 auto;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  main {
+    grid-template-columns: 1fr;
+  }
 }
 
 header {
@@ -53,14 +66,18 @@ header p {
   box-shadow: var(--shadow-sm);
   margin-bottom: 1.5rem;
   border: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 0;
 }
 
 .form-section h2 {
-  font-size: 1.25rem;
+ font-size: 1.25rem;
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex: 0 0 100%;
 }
 
 .grid-2 {
@@ -99,6 +116,7 @@ input {
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.2s;
+  width: 100%;
 }
 
 input:focus {
@@ -131,7 +149,8 @@ small {
 }
 
 .results-container {
-  margin-top: 2.5rem;
+  position: sticky;
+  top: 2rem;
   animation: fadeIn 0.5s ease-out;
 }
 
@@ -140,11 +159,10 @@ small {
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
-}
-
+} 
 .result-card {
   background: var(--card-bg);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   text-align: center;
@@ -157,7 +175,7 @@ small {
 }
 
 .result-card h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
 }

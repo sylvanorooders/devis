@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { CalculatorForm } from './components/CalculatorForm';
 import { ResultsDisplay } from './components/ResultsDisplay';
@@ -20,27 +20,23 @@ function App() {
 
   const [results, setResults] = useState<QuoteResult | null>(null);
 
-  const handleCalculate = () => {
-    // Basic validation
-    const values = Object.values(inputs);
-    if (values.some(v => v < 0)) {
-      alert("Veuillez remplir tous les champs avec des valeurs positives.");
-      return;
+  // Calculate automatically whenever inputs change
+  useEffect(() => {
+    // Check if all required dimensions are greater than 0
+    if (
+      inputs.wallLength > 0 && 
+      inputs.wallHeight > 0 && 
+      inputs.brickLength > 0 && 
+      inputs.brickWidth > 0 && 
+      inputs.brickHeight > 0
+    ) {
+      const res = calculateQuote(inputs);
+      setResults(res);
+    } else {
+      // Show empty results if dimensions are not valid
+      setResults(null);
     }
-    // Check required fields (dimensions > 0)
-    if (inputs.wallLength <= 0 || inputs.wallHeight <= 0 || inputs.brickLength <= 0 || inputs.brickWidth <= 0 || inputs.brickHeight <= 0) {
-        alert("Veuillez remplir les dimensions avec des valeurs supérieures à 0.");
-        return;
-    }
-
-    const res = calculateQuote(inputs);
-    setResults(res);
-    
-    // Scroll to results after a short delay to allow rendering
-    setTimeout(() => {
-        document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
+  }, [inputs]);
 
   return (
     <div className="container">
@@ -52,8 +48,7 @@ function App() {
       <main>
         <CalculatorForm 
             inputs={inputs} 
-            setInputs={setInputs} 
-            onCalculate={handleCalculate} 
+            setInputs={setInputs}
         />
         <ResultsDisplay results={results} />
       </main>

@@ -4,10 +4,9 @@ import type { CalculatorInputs } from '../types';
 interface Props {
     inputs: CalculatorInputs;
     setInputs: React.Dispatch<React.SetStateAction<CalculatorInputs>>;
-    onCalculate: () => void;
 }
 
-export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate }) => {
+export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs }) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setInputs(prev => ({
@@ -16,13 +15,8 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        onCalculate();
-    };
-
     return (
-        <form onSubmit={handleSubmit} className="calculator-form">
+        <div className="calculator-form">
             {/* Section: Dimensions du Mur */}
             <section className="form-section">
                 <h2>🧱 Dimensions du Mur</h2>
@@ -38,7 +32,6 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             placeholder="Ex: 10"
                             value={inputs.wallLength || ''}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                     <div className="input-group">
@@ -52,7 +45,6 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             placeholder="Ex: 2"
                             value={inputs.wallHeight || ''}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                 </div>
@@ -73,7 +65,6 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             placeholder="Ex: 50"
                             value={inputs.brickLength || ''}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                     <div className="input-group">
@@ -87,7 +78,6 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             placeholder="Ex: 20"
                             value={inputs.brickWidth || ''}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                     <div className="input-group">
@@ -101,7 +91,6 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             placeholder="Ex: 20"
                             value={inputs.brickHeight || ''}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                 </div>
@@ -116,7 +105,6 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             min="1"
                             value={inputs.thicknessRows || ''}
                             onChange={handleChange}
-                            required
                         />
                         <small>Nombre de briques en épaisseur</small>
                     </div>
@@ -131,7 +119,6 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             placeholder="Ex: 1500"
                             value={inputs.brickPrice || ''}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                 </div>
@@ -151,7 +138,6 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             min="0"
                             value={inputs.mortarThickness || ''}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                     <div className="input-group">
@@ -165,13 +151,10 @@ export const CalculatorForm: React.FC<Props> = ({ inputs, setInputs, onCalculate
                             placeholder="Ex: 120000"
                             value={inputs.mortarPrice || ''}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                 </div>
             </section>
-
-            <button type="submit" className="btn-calculate">Calculer le Devis</button>
-        </form>
+        </div>
     );
 };
