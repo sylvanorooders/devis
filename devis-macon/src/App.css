@@ -84,6 +84,7 @@ header p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  flex: 0 0 100%;
 }
 
 .grid-3 {
@@ -106,7 +107,7 @@ header p {
 
 label {
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--text-main);
 }
 
@@ -153,10 +154,13 @@ small {
   top: 2rem;
   animation: fadeIn 0.5s ease-out;
 }
+.results-container h2 {
+ margin-bottom: 20px;
+}
 
 .results-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr ;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 } 
@@ -175,7 +179,7 @@ small {
 }
 
 .result-card h3 {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
